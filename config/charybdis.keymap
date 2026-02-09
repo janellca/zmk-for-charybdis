@@ -35,6 +35,55 @@
                 <&macro_wait_time 30>,
                 <&rgb_ug RGB_COLOR_HSB(250,100,50)>;
         };
+
+        wrkSpcRght: wrkSpcRght {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(PAGE_DOWN)>;
+            label = "WRKSPCRGHT";
+        };
+
+        wrkSpcLft: wrkSpcLft {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LG(PAGE_UP)>;
+            label = "WRKSPCLFT";
+        };
+
+        tabRght: tabRght {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(PAGE_DOWN)>;
+            label = "TABRGHT";
+        };
+
+        tabLft: tabLft {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LC(PAGE_UP)>;
+            label = "TABLFT";
+        };
+
+        walrusEq: walrusEq {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp COLON &kp EQUAL>;
+            label = "WALRUSEQ";
+        };
+
+        ch: chR {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LESS_THAN &kp MINUS>;
+            label = "CHR";
+        };
+
+        s: chW {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp MINUS &kp GREATER_THAN>;
+            label = "CHW";
+        };
     };
 
     keymap {
@@ -42,23 +91,23 @@
 
         QWERTY {
             bindings = <
-&kp ESC         &kp N1  &kp N2   &kp N3            &kp N4        &kp N5          &kp N6      &kp N7     &kp N8     &kp N9   &kp N0    &kp BACKSPACE
-&kp TAB         &kp Q   &kp W    &kp E             &kp R         &kp T           &kp Y       &kp U      &kp I      &kp O    &kp P     &kp BSLH
-&kp CAPSLOCK    &kp A   &lt 4 S  &kp D             &lt 3 F       &kp G           &kp H       &kp J      &kp K      &kp L    &kp SEMI  &kp SQT
-&kp LEFT_SHIFT  &kp Z   &kp X    &kp C             &kp V         &lt 2 B         &kp N       &kp M      &kp COMMA  &kp DOT  &kp FSLH  &kp RIGHT_SHIFT
-                                 &kp LEFT_CONTROL  &kp SPACE     &mo 1           &kp DELETE  &kp SPACE
-                                                   &kp LEFT_WIN  &kp LEFT_ALT    &kp ENTER
+&kp GRAVE   &kp N1  &kp N2  &kp N3          &kp N4        &kp N5            &kp N6           &kp N7           &kp N8     &kp N9   &kp N0    &kp BACKSPACE
+&kp ESCAPE  &kp Q   &kp W   &kp E           &kp R         &kp T             &kp Y            &kp U            &kp I      &kp O    &kp P     &kp LEFT_BRACKET
+&kp TAB     &kp A   &kp S   &kp D           &kp F         &kp G             &kp H            &kp J            &kp K      &kp L    &kp SEMI  &kp SQT
+&kp LCTRL   &kp Z   &kp X   &kp C           &kp V         &kp B             &kp N            &kp M            &kp COMMA  &kp DOT  &kp FSLH  &kp RIGHT_SHIFT
+                            &kp LEFT_SHIFT  &lt 4 SPACE   &lt 5 DELETE      &kp RET          &lt 6 BACKSPACE
+                                            &kp LEFT_GUI  &lt 3 CAPSLOCK    &kp RIGHT_SHIFT
             >;
         };
 
         F_layers {
             bindings = <
-&kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6        &kp F7     &kp F8     &kp F9    &kp F10       &kp F11    &kp F12
-&kp X   &none   &none   &none   &none   &trans        &none      &none      &none     &kp UP_ARROW  &kp MINUS  &kp EQUAL
-&trans  &none   &none   &none   &none   &trans        &mkp LCLK  &mkp RCLK  &kp LEFT  &kp DOWN      &kp RIGHT  &trans
-&trans  &trans  &trans  &trans  &trans  &none         &none      &none      &trans    &trans        &none      &trans
-                        &trans  &trans  &To0_macro    &mkp LCLK  &mkp RCLK
-                                &trans  &trans        &trans
+&kp F1  &kp F2          &kp F3     &kp F4     &kp F5      &kp F6          &kp F7     &kp F8     &kp F9        &kp F10       &kp F11    &kp F12
+&kp B   &none           &none      &none      &none       &trans          &none      &none      &none         &kp UP_ARROW  &kp MINUS  &kp EQUAL
+&trans  &msc SCRL_UP    &mkp MCLK  &mkp RCLK  &mkp LCLK   &trans          &kp LEFT   &kp DOWN   &kp UP_ARROW  &kp RIGHT     &kp RIGHT  &trans
+&trans  &msc SCRL_DOWN  &tabLft    &tabRght   &wrkSpcLft  &wrkSpcRght     &none      &none      &trans        &trans        &none      &trans
+                                   &trans     &trans      &To0_macro      &mkp LCLK  &mkp RCLK
+                                              &trans      &kp LEFT_ALT    &trans
             >;
         };
 
@@ -67,7 +116,7 @@
 &trans  &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans      &trans  &trans  &trans  &trans  &trans
 &trans  &trans          &trans        &trans        &trans        &trans          &trans      &trans  &trans  &trans  &trans  &trans
 &trans  &bt BT_CLR_ALL  &trans        &trans        &trans        &trans          &trans      &trans  &trans  &trans  &trans  &trans
-&trans  &trans          &trans        &bt BT_CLR    &trans        &trans          &bt BT_NXT  &trans  &trans  &trans  &trans  &trans
+&kp A   &trans          &trans        &bt BT_CLR    &trans        &trans          &bt BT_NXT  &trans  &trans  &trans  &trans  &trans
                                       &trans        &trans        &trans          &trans      &trans
                                                     &trans        &trans          &trans
             >;
@@ -86,12 +135,34 @@
 
         snipe-layers {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans    &trans     &trans     &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans     &trans     &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &mkp LCLK  &mkp RCLK  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans    &trans     &trans     &trans  &trans  &trans  &trans
-                        &trans  &trans  &trans    &mkp LCLK  &mkp RCLK
-                                &trans  &trans    &trans
+&kp F1        &kp F2          &kp F3     &kp F4     &trans      &trans         &trans     &trans         &trans  &kp F10    &kp F11               &kp F12
+&kp LEFT_ALT  &trans          &trans     &trans     &lt 3 S     &trans         &trans     &trans         &trans  &trans     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
+&kp TAB       &msc SCRL_UP    &mkp MCLK  &mkp RCLK  &mkp LCLK   &kp LC(A)      &kp LEFT   &kp DOWN       &kp UP  &kp RIGHT  &kp LEFT_BRACKET      &kp RIGHT_BRACKET
+&kp LCTRL     &msc SCRL_DOWN  &tabLft    &tabRght   &wrkSpcLft  &wrkSpcRght    &kp PG_UP  &kp PAGE_DOWN  &trans  &trans     &kp LEFT_BRACE        &kp RIGHT_BRACE
+                                         &trans     &trans      &trans         &mkp LCLK  &mkp RCLK
+                                                    &trans      &trans         &trans
+            >;
+        };
+
+        layer_5 {
+            bindings = <
+&trans     &trans        &trans        &trans        &trans        &trans               &trans          &trans         &trans     &trans      &trans     &trans
+&trans     &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp N5               &kp N6          &kp N7         &kp N8     &kp N9      &kp N0     &kp BACKSPACE
+&trans     &trans        &mkp MCLK     &mkp RCLK     &mkp LCLK     &kp C_VOLUME_UP      &kp MINUS       &kp PLUS       &kp ASTRK  &kp SLASH   &kp EQUAL  &kp PERCENT
+&kp LCTRL  &trans        &trans        &trans        &trans        &kp C_VOLUME_DOWN    &kp UNDERSCORE  &kp PIPE       &kp COMMA  &kp PERIOD  &kp QMARK  &kp BACKSLASH
+                                       &trans        &trans        &trans               &kp ENTER       &kp BACKSPACE
+                                                     &trans        &trans               &trans
+            >;
+        };
+
+        layer_6 {
+            bindings = <
+&trans  &trans           &trans       &trans    &trans      &trans         &trans          &trans         &trans        &trans                &trans                &trans
+&trans  &kp EXCLAMATION  &kp AT_SIGN  &kp HASH  &kp DOLLAR  &kp PERCENT    &kp CARET       &kp AMPERSAND  &kp ASTERISK  &kp LEFT_PARENTHESIS  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS
+&trans  &trans           &trans       &trans    &trans      &trans         &kp PIPE        &walrusEq      &trans        &trans                &kp LEFT_BRACKET      &kp RIGHT_BRACKET
+&trans  &trans           &trans       &trans    &trans      &trans         &kp UNDERSCORE  &kp MINUS      &ch           &s                    &kp LEFT_BRACE        &kp RIGHT_BRACE
+                                      &trans    &trans      &trans         &bt BT_CLR_ALL  &trans
+                                                &trans      &trans         &trans
             >;
         };
     };
